@@ -1,6 +1,6 @@
 import classes from './home.module.scss';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import CrudContext from '../context/context';
 import axios from 'axios';
 
@@ -18,26 +18,27 @@ function Home() {
 
     const sendBtn = (e) => {
         e.preventDefault()
-        axios.post(base_url2, {
-            message: msg
-        })
-            .then(() => {
-                setMsg({message: '' })
+        if (msg.message !== '') {
+            axios.post(base_url2, {
+                message: msg
             })
-            .catch(error => {
-                console.alert(error.message)
-            })
+                .then(() => {
+                    setMsg({ message: '' })
+                })
+                .catch(error => {
+                    console.alert(error.message)
+                })
+        }
+        setTimeout(() => {
+            axios.get(base_url2)
+                .then((data) => {
+                    setGetMsg(data.data)
+                })
+        }, 0)
     }
 
-    useEffect(() => {
-        axios.get(base_url2)
-            .then((data) => {
-                setGetMsg(data.data)
-            })
-    }, [getMsg])
-
     const result = getMsg.map((item, i) => {
-        return(
+        return (
             <div key={i} className={classes.result}>
                 {item.message.message}
             </div>
@@ -70,7 +71,9 @@ function Home() {
             </div>
             <form className={classes.form}>
                 <textarea rows='4' name='message' onChange={(e) => handleChange('message', e.target.value)}></textarea>
-                <button type='submit' onClick={sendBtn}><i className="fa-solid fa-paper-plane"></i></button>
+                <button type='submit' onClick={sendBtn}>
+                    <i className="fa-solid fa-paper-plane"></i>
+                </button>
             </form>
         </div>
     )
