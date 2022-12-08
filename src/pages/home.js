@@ -9,7 +9,6 @@ function Home() {
     const { base_url2 } = useContext(CrudContext)
     const [msg, setMsg] = useState({})
     const [getMsg, setGetMsg] = useState([])
-    const [effect, setEffect] = useState(false)
 
     const handleChange = (k, v) => {
         if (v !== '') {
@@ -23,8 +22,7 @@ function Home() {
             message: msg
         })
             .then(() => {
-                setMsg({ ...msg, message: '' })
-                setEffect(current => !current)
+                setMsg({message: '' })
             })
             .catch(error => {
                 console.alert(error.message)
