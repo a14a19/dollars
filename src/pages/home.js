@@ -52,6 +52,9 @@ function Home() {
                     Rules!
                     <ul>
                         <li>
+                            Welcome to Dollars, this is open chat platform.
+                        </li>
+                        <li>
                             Friendly chat are welcome.
                         </li>
                         <li>
