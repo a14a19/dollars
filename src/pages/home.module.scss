@@ -36,6 +36,17 @@
         margin-top: 5px;
         margin-bottom: 5px;
         position: relative;
+        div {
+          span {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            font-size: 14px;
+            margin-bottom: 5px;
+          }
+        }
+        textarea {
+          width: 98%;
+        }
         .edit {
           position: absolute;
           bottom: 25px;

@@ -4,16 +4,27 @@ import { useContext } from 'react';
 import CrudContext from '../context/context';
 
 function SideMenu() {
-    const { sidemenu, setLogin } = useContext(CrudContext)
+    const { sidemenu, setLogin, users } = useContext(CrudContext)
 
     const logoutBtn = (e) => {
         e.preventDefault()
         setLogin(current => !current)
     }
+
+    const usersList = users.map((item, i) => {
+        return(
+            <li key={i}>
+                {item.username.username}
+            </li>
+        )
+    })
+
     return (
         <>
             {sidemenu &&
                 <ul className={classes.sidemenu}>
+                    <h3>Online</h3>
+                    {usersList}
                     <button onClick={logoutBtn}>
                         Logout
                     </button>

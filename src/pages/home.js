@@ -6,13 +6,14 @@ import axios from 'axios';
 
 function Home() {
 
-    const { base_url2 } = useContext(CrudContext)
-    const [msg, setMsg] = useState({})
+    const { base_url2, user } = useContext(CrudContext)
+    const [msg, setMsg] = useState({ message: '' })
     const [getMsg, setGetMsg] = useState([])
+    const [editing, setEditing] = useState(false)
 
     const handleChange = (k, v) => {
         if (v !== '') {
-            setMsg({ ...msg, [k]: v })
+            setMsg({ [k]: v })
         }
     }
 
@@ -24,21 +25,21 @@ function Home() {
             })
                 .then(() => {
                     setMsg({ message: '' })
+                    axios.get(base_url2)
+                        .then((data) => {
+                            setGetMsg(data.data)
+                        })
+                        .catch(error => {
+                            console.log(error.message);
+                        })
                 })
                 .catch(error => {
                     console.alert(error.message)
                 })
         }
-        setTimeout(() => {
-            axios.get(base_url2)
-                .then((data) => {
-                    setGetMsg(data.data)
-                })
-        }, 0)
     }
 
     const dlt = (msgID) => {
-        console.log(msgID);
         axios
             .delete(base_url2 + "/" + msgID)
             .then(() => {
@@ -56,10 +57,34 @@ function Home() {
     }
 
     const result = getMsg.map((item, i) => {
+        
+        // * make the use of ID to edit message
+        const edt = (id) => {
+            console.log(item);
+            setEditing(current => !current)
+        }
+
         return (
             <div key={i} className={classes.result}>
-                {item.message.message}
-                <button title='Edit' className={classes.edit}>
+                {
+                    editing === false ?
+
+                        <div>
+                            <span>
+                                user: {user.username}
+                            </span>
+                            <p>
+                                {item.message.message}
+                            </p>
+                        </div>
+                        :
+                        <textarea></textarea>
+                }
+                <button
+                    title='Edit'
+                    className={classes.edit}
+                    onClick={() => edt(item._id)}
+                >
                     <i className="fa-solid fa-pen"></i>
                 </button>
                 <button

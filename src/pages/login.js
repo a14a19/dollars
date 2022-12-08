@@ -7,18 +7,17 @@ import axios from 'axios';
 
 function Login() {
 
-    const { setLogin, base_url1, passRegex } = useContext(CrudContext)
-    const [user, setUser] = useState({})
+    const { setLogin, base_url1, passRegex, setUsers, user, setUser } = useContext(CrudContext)
     const [pass, setPass] = useState('')
     const [check, setCheck] = useState(false)
 
     const handleChange = (k, v) => {
         if (v !== '') {
-            setUser({ ...user, [k]: v })
+            setUser({ [k]: v })
             axios.get(base_url1)
                 .then((data) => {
                     data.data.map((item) => {
-                        if(item.username.username.includes(v)){
+                        if (item.username.username.includes(v)) {
                             setCheck(true)
                         } else {
                             setCheck(false)
@@ -38,7 +37,10 @@ function Login() {
             })
                 .then(() => {
                     setLogin(current => !current)
-                    setUser({})
+                    axios.get(base_url1)
+                        .then((data) => {
+                            setUsers(data.data)
+                        })
                 })
                 .catch(error => {
                     console.alert(error.message);
