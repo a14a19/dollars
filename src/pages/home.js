@@ -37,10 +37,38 @@ function Home() {
         }, 0)
     }
 
+    const dlt = (msgID) => {
+        console.log(msgID);
+        axios
+            .delete(base_url2 + "/" + msgID)
+            .then(() => {
+                axios.get(base_url2)
+                    .then((data) => {
+                        setGetMsg(data.data)
+                    })
+                    .catch(error => {
+                        console.alert(error.message);
+                    })
+            })
+            .catch(error => {
+                console.alert(error.message);
+            })
+    }
+
     const result = getMsg.map((item, i) => {
         return (
             <div key={i} className={classes.result}>
                 {item.message.message}
+                <button title='Edit' className={classes.edit}>
+                    <i className="fa-solid fa-pen"></i>
+                </button>
+                <button
+                    title='Delete'
+                    className={classes.delete}
+                    onClick={() => dlt(item._id)}
+                >
+                    <i className="fa-solid fa-trash-can"></i>
+                </button>
             </div>
         )
     })
