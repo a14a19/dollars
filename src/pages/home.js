@@ -36,7 +36,7 @@ function Home() {
             .then((data) => {
                 setGetMsg(data.data)
             })
-    }, [effect])
+    }, [getMsg])
 
     const result = getMsg.map((item, i) => {
         return(

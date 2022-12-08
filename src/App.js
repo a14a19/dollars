@@ -8,7 +8,7 @@ import { useState } from 'react';
 import CrudContext from './context/context';
 
 const base_url1 = `https://crudcrud.com/api/9f83b6bb6d07447e851e9cd2d05ae588/posts`; 
-const base_url2 = `https://crudcrud.com/api/e1c89db027c24088b62b38ed4e28332d/posts`;
+const base_url2 = `https://crudcrud.com/api/72635aa7deaf4514b88f7b21724d1989/posts`;
 const passRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,16}$/
 
 function App() {
