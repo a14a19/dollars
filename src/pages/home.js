@@ -3,6 +3,7 @@ import classes from './home.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import CrudContext from '../context/context';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -132,7 +133,7 @@ function Home() {
                             Chat will disappear after 24hours. (Some times before 24hours, if the usage of app is high.)
                         </li>
                         <li>
-                            For feedback or any inconvenience, please contact - anas31197@gmail.com or +918251039590 or +18507248774 (whatsapp only).
+                            Visit <Link to='/about' title='About'>About page</Link> for more info.
                         </li>
                     </ul>
                 </div>

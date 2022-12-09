@@ -2,6 +2,7 @@ import classes from './header.module.scss';
 
 import { useContext } from 'react';
 import CrudContext from '../context/context';
+import { Link } from 'react-router-dom';
 
 function SideMenu() {
     const { sidemenu, setLogin, users } = useContext(CrudContext)
@@ -12,7 +13,7 @@ function SideMenu() {
     }
 
     const usersList = users.map((item, i) => {
-        return(
+        return (
             <li key={i}>
                 {item.username.username}
             </li>
@@ -43,7 +44,9 @@ function HeaderSub() {
     }
     return (
         <div className={classes.headerSub}>
-            <h3>Welcome to Dollars</h3>
+            <Link to='/home' className={classes.title} title='Home'>
+                <h3>Welcome to Dollars</h3>
+            </Link>
             <button onClick={sideBtn}>
                 <i className="fa-solid fa-bars"></i>
             </button>

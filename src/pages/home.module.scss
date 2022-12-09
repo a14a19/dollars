@@ -18,6 +18,16 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       ul {
         list-style: lower-roman;
+        li {
+          a {
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.25s;
+          }
+          a:hover {
+            color: white;
+          }
+        }
       }
     }
     .messages {

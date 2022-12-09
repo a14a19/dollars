@@ -1,0 +1,17 @@
+.about {
+    text-align: left;
+    padding: 25px;
+    min-height: calc(100vh - 42px);
+    color: white;
+    h3 {
+        margin-top: 56.8px;
+    }
+    p {
+        a {
+            color: white;
+        }
+        a:hover {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+}
